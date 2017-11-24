@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="Infrastructure\Filters\" />
-    <Folder Include="Infrastructure\Mapping\" />
   </ItemGroup>
 
 </Project>
