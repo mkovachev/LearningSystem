@@ -27,7 +27,7 @@ namespace LearningSystem.Web
             services.AddDbContext<LearningSystemDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<User, IdentityRole>(options => 
+            services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequireUppercase = false;
@@ -41,7 +41,7 @@ namespace LearningSystem.Web
 
             services.AddAutoMapper(); // reg autoMapper
 
-            services.AddMvc(options => 
+            services.AddMvc(options =>
             {
                 options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>(); // reg AntiForgeryToken
             });
@@ -69,6 +69,10 @@ namespace LearningSystem.Web
 
             app.UseMvc(routes =>
             {
+                //routes.MapRoute(
+                //    name: "areas",
+                //    template: "{areas:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
