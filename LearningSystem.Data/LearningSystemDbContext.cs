@@ -23,19 +23,31 @@ namespace LearningSystem.Data
 
             builder
                 .Entity<StudentCourse>()
-                .HasOne(st => st.Student)
-                .WithMany(c => c.Courses)
-                .HasForeignKey(st => st.StudentId);
+                .HasOne(sc => sc.Student)
+                .WithMany(s => s.Courses)
+                .HasForeignKey(sc => sc.StudentId);
 
             builder
                .Entity<StudentCourse>()
-               .HasOne(c => c.Course)
-               .WithMany(st => st.Students)
-               .HasForeignKey(c => c.CourseId);
+               .HasOne(sc => sc.Course)
+               .WithMany(c => c.Students)
+               .HasForeignKey(sc => sc.CourseId);
+
+            builder
+                .Entity<Course>()
+                .HasOne(c => c.Trainer)
+                .WithMany(u => u.Trainings)
+                .HasForeignKey(c => c.TrainerId);
+
+            builder
+                .Entity<Article>()
+                .HasOne(a => a.Author)
+                .WithMany(u => u.Articles)
+                .HasForeignKey(a => a.AuthorId);
 
 
-            builder.Entity<Course>().ToTable("Courses");
-            builder.Entity<Article>().ToTable("Articles");
+            //builder.Entity<Course>().ToTable("Courses");
+            //builder.Entity<Article>().ToTable("Articles");
 
             base.OnModelCreating(builder);        
         }

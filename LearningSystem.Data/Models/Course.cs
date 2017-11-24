@@ -11,12 +11,14 @@ namespace LearningSystem.Data.Models
 
         public string Description { get; set; }
 
-        public string Trainer { get; set; }
-
         public DateTime StartDate { get; set; }
 
         public DateTime EndtDate { get; set; }
 
-        public IEnumerable<StudentCourse> Students { get; set; }
+        public string TrainerId { get; set; }
+
+        public User Trainer { get; set; }
+
+        public List<StudentCourse> Students { get; set; } = new List<StudentCourse>();
     }
 }

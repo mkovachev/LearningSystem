@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LearningSystem.Data.Models
 {
@@ -14,6 +12,8 @@ namespace LearningSystem.Data.Models
 
         public DateTime PublishDate { get; set; }
 
-        public string Author { get; set; }
+        public string AuthorId { get; set; }
+
+        public User Author { get; set; }
     }
 }
