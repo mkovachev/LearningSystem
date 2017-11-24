@@ -11,13 +11,15 @@ namespace LearningSystem.Data
         {
         }
 
-        public DbSet<Course> Course { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Article> Articles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+
             builder
                 .Entity<StudentCourse>()
-                .HasKey(st => new { st.CourseId, st.StudentId });
+                .HasKey(st => new { st.CourseId, st.StudentId }); // composite primary key
 
             builder
                 .Entity<StudentCourse>()
@@ -30,6 +32,10 @@ namespace LearningSystem.Data
                .HasOne(c => c.Course)
                .WithMany(st => st.Students)
                .HasForeignKey(c => c.CourseId);
+
+
+            builder.Entity<Course>().ToTable("Courses");
+            builder.Entity<Article>().ToTable("Articles");
 
             base.OnModelCreating(builder);        
         }
