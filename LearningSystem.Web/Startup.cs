@@ -1,5 +1,6 @@
 ﻿using LearningSystem.Data;
 using LearningSystem.Data.Models;
+using LearningSystem.Web.Infrastructure.Extensions;
 using LearningSystem.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,6 +42,9 @@ namespace LearningSystem.Web
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+            app.UseDatabaseMigration(); // migrate db automatically
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

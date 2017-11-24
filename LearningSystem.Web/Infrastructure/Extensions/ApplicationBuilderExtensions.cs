@@ -1,13 +1,12 @@
 ﻿using LearningSystem.Data;
 using LearningSystem.Data.Models;
-using LearningSystem.Web.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 
-namespace CameraShop.Web.Infrastructure.Extensions
+namespace LearningSystem.Web.Infrastructure.Extensions
 {
     public static class ApplicationBuilderExtensions
     {
@@ -21,7 +20,7 @@ namespace CameraShop.Web.Infrastructure.Extensions
                 var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
 
 
-                // add admin user and amdin role
+                // add admin user and admin role
                 Task.Run(async () =>
                 {
                     var adminRole = GlobalConstants.AdminRole;
