@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using LearningSystem.Web.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Microsoft.AspNetCore.Mvc
+namespace LearningSystem.Web.Infrastructure.Extensions
 {
     public static class UrlHelperExtensions
     {

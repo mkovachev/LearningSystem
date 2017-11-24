@@ -4,5 +4,6 @@ namespace LearningSystem.Data.Models
 {
     public class User : IdentityUser
     {
+
     }
 }
