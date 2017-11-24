@@ -11,10 +11,27 @@ namespace LearningSystem.Data
         {
         }
 
+        public DbSet<Course> Course { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
-         
+            builder
+                .Entity<StudentCourse>()
+                .HasKey(st => new { st.CourseId, st.StudentId });
+
+            builder
+                .Entity<StudentCourse>()
+                .HasOne(st => st.Student)
+                .WithMany(c => c.Courses)
+                .HasForeignKey(st => st.StudentId);
+
+            builder
+               .Entity<StudentCourse>()
+               .HasOne(c => c.Course)
+               .WithMany(st => st.Students)
+               .HasForeignKey(c => c.CourseId);
+
+            base.OnModelCreating(builder);        
         }
     }
 }
