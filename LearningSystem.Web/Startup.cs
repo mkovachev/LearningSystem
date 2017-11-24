@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LearningSystem.Web
 {
@@ -37,7 +39,12 @@ namespace LearningSystem.Web
 
             services.AddTransient<IEmailSender, EmailSender>();
 
-            services.AddMvc();
+            services.AddAutoMapper(); // reg autoMapper
+
+            services.AddMvc(options => 
+            {
+                options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>(); // reg AntiForgeryToken
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
