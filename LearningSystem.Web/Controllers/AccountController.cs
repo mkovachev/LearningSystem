@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using LearningSystem.Web.Infrastructure.Extensions;
 
 namespace LearningSystem.Web.Controllers
 {

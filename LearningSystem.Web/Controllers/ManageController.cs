@@ -1,11 +1,12 @@
-﻿using LearningSystem.Web.Models.ManageViewModels;
+﻿using LearningSystem.Data.Models;
+using LearningSystem.Web.Infrastructure.Extensions;
+using LearningSystem.Web.Models.ManageViewModels;
 using LearningSystem.Web.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using LearningSystem.Data.Models;
 using System;
 using System.Linq;
 using System.Text;
