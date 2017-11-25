@@ -2,7 +2,6 @@
 using LearningSystem.Web.Infrastructure;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
 namespace LearningSystem.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -11,7 +10,7 @@ namespace LearningSystem.Web.Areas.Admin.Controllers
     {
         private readonly IAdminService users;
 
-        public UsersController(IAdminService admins) => this.users = admins;
+        public UsersController(IAdminService users) => this.users = users;
 
         public IActionResult Index() => View(this.users.GetAll());
     }

@@ -6,19 +6,16 @@ using System.Linq;
 
 namespace LearningSystem.Services.Admin.Services
 {
-    public class AdminService
+    public class AdminService : IAdminService
     {
         private readonly LearningSystemDbContext db;
 
         public AdminService(LearningSystemDbContext db) => this.db = db;
 
-        public IEnumerable<AdminAllUsersServiceModel> GetAll()
-        {
-            // TODO pagnation
-            return this.db
-                    .Users
-                    .ProjectTo<AdminAllUsersServiceModel>()
-                    .ToList();
-        }
+        public IEnumerable<AdminAllUsersServiceModel> GetAll()  // TODO pagnation
+            => this.db
+                 .Users
+                 .ProjectTo<AdminAllUsersServiceModel>()
+                 .ToList();
     }
 }
