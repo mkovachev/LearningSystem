@@ -65,7 +65,7 @@ namespace LearningSystem.Web.Areas.Admin.Controllers
 
             await this.userManager.AddToRoleAsync(user, model.Role);
 
-            TempData
+            
             return RedirectToAction(nameof(Index));
         }
     }
