@@ -1,8 +1,9 @@
 ﻿using AutoMapper.QueryableExtensions;
 using LearningSystem.Data;
 using LearningSystem.Services.Admin.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace LearningSystem.Services.Admin.Services
 {
@@ -12,10 +13,10 @@ namespace LearningSystem.Services.Admin.Services
 
         public AdminService(LearningSystemDbContext db) => this.db = db;
 
-        public IEnumerable<AdminAllUsersServiceModel> GetAll()  // TODO pagnation
-            => this.db
+        public async Task<IEnumerable<AdminAllUsersServiceModel>> GetAllAsync()  // TODO pagnation
+            => await this.db
                  .Users
                  .ProjectTo<AdminAllUsersServiceModel>()
-                 .ToList();
+                 .ToListAsync();
     }
 }
