@@ -16,42 +16,52 @@ namespace LearningSystem.Web.Infrastructure.Extensions
             {
                 serviceScope.ServiceProvider.GetService<LearningSystemDbContext>().Database.Migrate();
 
-                //    var userManager = serviceScope.ServiceProvider.GetService<UserManager<User>>();
-                //    var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
+                var userManager = serviceScope.ServiceProvider.GetService<UserManager<User>>();
+                var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
 
 
-                //    // add admin user and admin role
-                //    Task.Run(async () =>
-                //    {
-                //        var adminRole = GlobalConstants.AdminRole;
-                //        var adminRoleExists = await roleManager.RoleExistsAsync(adminRole);
+                // create roles
+                Task.Run(async () =>
+                {
+                    var roles = new[]
+                    {
+                        WebConstants.AdminRole,
+                        WebConstants.BlogAuthorRole,
+                        WebConstants.TrainerRole
+                    };
 
-                //        if (!adminRoleExists)
-                //        {
-                //            var result = await roleManager.CreateAsync(new IdentityRole
-                //            {
-                //                Name = adminRole
-                //            });
+                    foreach (var role in roles)
+                    {
+                        var roleExists = await roleManager.RoleExistsAsync(role);
 
-                //            //result.Errors...
-                //        }
+                        if (!roleExists)
+                        {
+                            var result = await roleManager.CreateAsync(new IdentityRole
+                            {
+                                Name = role
+                            });
 
-                //        var admin = await userManager.FindByNameAsync("admin@test.com");
+                            //result.Errors...
+                        }
+                    }
 
-                //        if (admin == null)
-                //        {
-                //            admin = new User
-                //            {
-                //                UserName = "admin@test.com",
-                //                Email = "admin@test.com"
-                //            };
+                    // create admin
+                    var admin = await userManager.FindByNameAsync("admin@test.com");
 
-                //            await userManager.CreateAsync(admin, "123456");
+                    if (admin == null)
+                    {
+                        admin = new User
+                        {
+                            UserName = "admin@test.com",
+                            Email = "admin@test.com"
+                        };
 
-                //            await userManager.AddToRoleAsync(admin, GlobalConstants.AdminRole);
-                //        }
-                //    })
-                //    .Wait();
+                        await userManager.CreateAsync(admin, "123456");
+
+                        await userManager.AddToRoleAsync(admin, WebConstants.AdminRole);
+                    }
+                })
+                .Wait();
             }
 
             return app;
