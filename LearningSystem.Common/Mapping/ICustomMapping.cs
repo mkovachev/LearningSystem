@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace LearningSystem.Web.Infrastructure.Mapping
+namespace LearningSystem.Common.Mapping
 {
     public interface ICustomMapping
     {

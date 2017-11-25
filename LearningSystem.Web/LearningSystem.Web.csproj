@@ -20,12 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LearningSystem.Common\LearningSystem.Common.csproj" />
     <ProjectReference Include="..\LearningSystem.Data\LearningSystem.Data.csproj" />
     <ProjectReference Include="..\LearningSystem.Services\LearningSystem.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\" />
@@ -34,7 +34,6 @@
     <Folder Include="Areas\Blog\Models\" />
     <Folder Include="Areas\Blog\Views\" />
     <Folder Include="Infrastructure\Filters\" />
-    <Folder Include="Areas\" />
   </ItemGroup>
 
 </Project>

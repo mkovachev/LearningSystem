@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Linq;
+using LearningSystem.Common.Mapping;
 
 namespace LearningSystem.Web.Infrastructure.Mapping
 {
