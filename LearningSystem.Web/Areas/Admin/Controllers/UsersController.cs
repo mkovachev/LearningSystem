@@ -2,6 +2,7 @@
 using LearningSystem.Services.Admin;
 using LearningSystem.Web.Areas.Admin.Models.Users;
 using LearningSystem.Web.Infrastructure;
+using LearningSystem.Web.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -63,9 +64,17 @@ namespace LearningSystem.Web.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            await this.userManager.AddToRoleAsync(user, model.Role);
+            if (!await userManager.IsInRoleAsync(user, model.Role))
+            {
+                TempData.AddErrorMessage($"{user.UserName} has already a {model.Role} role.");
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                await this.userManager.AddToRoleAsync(user, model.Role);
 
-            
+                TempData.AddSuccessMessage($"User {user.UserName} successfully added to role {model.Role}.");
+            }
             return RedirectToAction(nameof(Index));
         }
     }
