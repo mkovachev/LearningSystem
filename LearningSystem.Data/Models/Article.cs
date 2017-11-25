@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LearningSystem.Data.Models
 {
@@ -6,8 +7,12 @@ namespace LearningSystem.Data.Models
     {
         public int Id { get; set; }
 
+        [Required]
+        [MaxLength(DataConstants.TitleMaxLength)]
         public string Title { get; set; }
 
+        [Required]
+        [MaxLength(5000)]
         public string Content { get; set; }
 
         public DateTime PublishDate { get; set; }
