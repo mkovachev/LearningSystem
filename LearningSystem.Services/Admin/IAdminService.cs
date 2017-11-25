@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LearningSystem.Services.Admin
+﻿namespace LearningSystem.Services.Admin
 {
     public interface IAdminService
     {
