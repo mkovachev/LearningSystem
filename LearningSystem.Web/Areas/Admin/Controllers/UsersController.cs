@@ -37,7 +37,7 @@ namespace LearningSystem.Web.Areas.Admin.Controllers
                 .ToListAsync();
 
 
-            return View(new AdminAllUsersViewModel
+            return View(new AllUsersViewModel
             {
                 Users = users,
                 Roles = roles

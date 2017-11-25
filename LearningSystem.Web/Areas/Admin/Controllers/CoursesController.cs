@@ -4,7 +4,7 @@ namespace LearningSystem.Web.Areas.Admin.Controllers
 {
     public class CoursesController : BaseAdminController
     {
-        public IActionResult Index()
+        public IActionResult Create()
         {
             return View();
         }

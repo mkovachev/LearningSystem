@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace LearningSystem.Web.Areas.Admin.Models.Users
 {
-    public class AdminAllUsersViewModel
+    public class AllUsersViewModel
     {
         public IEnumerable<AdminAllUsersServiceModel> Users { get; set; }
 
