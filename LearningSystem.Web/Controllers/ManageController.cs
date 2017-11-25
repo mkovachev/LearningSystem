@@ -1,7 +1,7 @@
 ﻿using LearningSystem.Data.Models;
+using LearningSystem.Services.Contracts;
 using LearningSystem.Web.Infrastructure.Extensions;
 using LearningSystem.Web.Models.ManageViewModels;
-using LearningSystem.Web.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

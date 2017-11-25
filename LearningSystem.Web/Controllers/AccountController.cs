@@ -1,6 +1,7 @@
-﻿using LearningSystem.Web.Models.AccountViewModels;
-using LearningSystem.Web.Services;
-using LearningSystem.Data.Models;
+﻿using LearningSystem.Data.Models;
+using LearningSystem.Services.Contracts;
+using LearningSystem.Web.Infrastructure.Extensions;
+using LearningSystem.Web.Models.AccountViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -9,7 +10,6 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using LearningSystem.Web.Infrastructure.Extensions;
 
 namespace LearningSystem.Web.Controllers
 {

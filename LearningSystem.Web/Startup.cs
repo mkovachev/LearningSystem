@@ -1,15 +1,14 @@
-﻿using LearningSystem.Data;
+﻿using AutoMapper;
+using LearningSystem.Data;
 using LearningSystem.Data.Models;
 using LearningSystem.Web.Infrastructure.Extensions;
-using LearningSystem.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 
 namespace LearningSystem.Web
 {
@@ -37,7 +36,8 @@ namespace LearningSystem.Web
                 .AddEntityFrameworkStores<LearningSystemDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddTransient<IEmailSender, EmailSender>();
+
+            services.AddServices(); // auto add services
 
             services.AddAutoMapper(); // reg autoMapper
 
