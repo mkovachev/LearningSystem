@@ -1,9 +1,7 @@
 ﻿using LearningSystem.Data.Models;
 using LearningSystem.Services.Admin;
 using LearningSystem.Web.Areas.Admin.Models.Users;
-using LearningSystem.Web.Infrastructure;
 using LearningSystem.Web.Infrastructure.Extensions;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,9 +11,7 @@ using System.Threading.Tasks;
 
 namespace LearningSystem.Web.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    [Authorize(Roles = WebConstants.AdminRole)]
-    public class UsersController : Controller
+    public class UsersController : BaseAdminController
     {
         private readonly IAdminService users;
         private readonly RoleManager<IdentityRole> roleManager;
