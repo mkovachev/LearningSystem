@@ -1,0 +1,30 @@
+﻿@model IEnumerable<AdminAllUsersServiceModel>
+@{
+    ViewData["Title"] = "All Administration";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Username</td>
+                <td>@user.Email</td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="/users/edit/@user.Id">Edit</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger btn-sm" href="/users/details/@user.Id">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

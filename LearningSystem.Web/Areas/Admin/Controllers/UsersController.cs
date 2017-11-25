@@ -1,4 +1,5 @@
-﻿using LearningSystem.Web.Infrastructure;
+﻿using LearningSystem.Services.Admin;
+using LearningSystem.Web.Infrastructure;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +9,10 @@ namespace LearningSystem.Web.Areas.Admin.Controllers
     [Authorize(Roles = WebConstants.AdminRole)]
     public class UsersController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        private readonly IAdminService users;
+
+        public UsersController(IAdminService admins) => this.users = admins;
+
+        public IActionResult Index() => View(this.users.GetAll());
     }
 }
