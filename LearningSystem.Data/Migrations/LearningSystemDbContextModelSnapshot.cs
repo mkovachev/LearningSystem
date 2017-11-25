@@ -11,10 +11,9 @@ using System;
 namespace LearningSystem.Data.Migrations
 {
     [DbContext(typeof(LearningSystemDbContext))]
-    [Migration("20171125102452_Init")]
-    partial class Init
+    partial class LearningSystemDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,7 +105,6 @@ namespace LearningSystem.Data.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<string>("NormalizedEmail")

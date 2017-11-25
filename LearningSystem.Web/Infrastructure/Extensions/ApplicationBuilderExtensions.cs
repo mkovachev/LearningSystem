@@ -56,7 +56,7 @@ namespace LearningSystem.Web.Infrastructure.Extensions
                             Email = "admin@test.com"
                         };
 
-                        await userManager.CreateAsync(admin, "123456");
+                        await userManager.CreateAsync(admin, "11223344");
 
                         await userManager.AddToRoleAsync(admin, WebConstants.AdminRole);
                     }
