@@ -41,7 +41,7 @@ namespace LearningSystem.Web.Infrastructure.Extensions
                                 Name = role
                             });
 
-                            //result.Errors...
+                            // result.Errors.ToString();
                         }
                     }
 
