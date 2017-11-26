@@ -1,5 +1,5 @@
 ﻿using LearningSystem.Data.Models;
-using LearningSystem.Services.Contracts;
+using LearningSystem.Services;
 using LearningSystem.Web.Infrastructure.Extensions;
 using LearningSystem.Web.Models.AccountViewModels;
 using Microsoft.AspNetCore.Authentication;

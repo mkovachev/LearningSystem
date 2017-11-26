@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace LearningSystem.Services.Contracts
+namespace LearningSystem.Services
 {
     public interface IEmailSender
     {

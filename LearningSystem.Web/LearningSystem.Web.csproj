@@ -27,8 +27,8 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Courses\" />
     <Folder Include="Areas\Blog\Models\" />
-    <Folder Include="Areas\Blog\Views\" />
     <Folder Include="Infrastructure\Filters\" />
   </ItemGroup>
 

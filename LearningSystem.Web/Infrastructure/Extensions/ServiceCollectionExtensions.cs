@@ -1,4 +1,4 @@
-﻿using LearningSystem.Services.Contracts;
+﻿using LearningSystem.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Reflection;
