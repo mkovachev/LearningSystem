@@ -1,5 +1,5 @@
 ﻿using LearningSystem.Data.Models;
-using LearningSystem.Services.Admin;
+using LearningSystem.Services.Admin.Contracts;
 using LearningSystem.Web.Areas.Admin.Models.Users;
 using LearningSystem.Web.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Identity;

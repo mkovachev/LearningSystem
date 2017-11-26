@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace LearningSystem.Services.Admin
+namespace LearningSystem.Services.Admin.Contracts
 {
     public interface IAdminService
     {

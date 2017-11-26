@@ -1,5 +1,6 @@
 ﻿using AutoMapper.QueryableExtensions;
 using LearningSystem.Data;
+using LearningSystem.Services.Admin.Contracts;
 using LearningSystem.Services.Admin.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
