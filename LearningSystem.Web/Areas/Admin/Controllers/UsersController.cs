@@ -60,9 +60,11 @@ namespace LearningSystem.Web.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            if (!await userManager.IsInRoleAsync(user, model.Role))
+            var userisInRole = await userManager.IsInRoleAsync(user, model.Role);
+
+            if (userisInRole)
             {
-                TempData.AddErrorMessage($"{user.UserName} has already a {model.Role} role.");
+                TempData.AddErrorMessage($"{user.UserName} already has role {model.Role}!");
                 return RedirectToAction(nameof(Index));
             }
             else
