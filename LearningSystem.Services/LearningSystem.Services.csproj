@@ -15,8 +15,4 @@
     <ProjectReference Include="..\LearningSystem.Data\LearningSystem.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Blog\Services\" />
-  </ItemGroup>
-
 </Project>

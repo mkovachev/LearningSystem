@@ -1,5 +1,6 @@
 ﻿using LearningSystem.Data.Models;
 using LearningSystem.Services.Blog.Contracts;
+using LearningSystem.Services.Blog.Models;
 using LearningSystem.Services.Html.Contracts;
 using LearningSystem.Web.Areas.Blog.Models.Articles;
 using LearningSystem.Web.Infrastructure;
@@ -28,7 +29,8 @@ namespace LearningSystem.Web.Areas.Blog.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult Index() => View();
+        public async Task<IActionResult> Index(int page = 1) 
+            => View(await this.articles.GetAllAsync(page));
 
         public async Task<IActionResult> Create() => await Task.Run(() => View());
 
