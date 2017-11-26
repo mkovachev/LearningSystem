@@ -2,6 +2,6 @@
 {
     public class DataConstants
     {
-        public const int TitleMaxLength = 20; 
+        public const int TitleMaxLength = 50; 
     }
 }

@@ -18,7 +18,7 @@ namespace LearningSystem.Services.Blog.Models
         [Required]
         [MaxLength(5000)]
         public string Content { get; set; }
-        `
+        
         [DataType(DataType.Date)]
         [Display(Name = "Publish Date")]
         public DateTime PublishDate { get; set; }

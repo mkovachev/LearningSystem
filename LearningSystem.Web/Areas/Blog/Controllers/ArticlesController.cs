@@ -29,8 +29,15 @@ namespace LearningSystem.Web.Areas.Blog.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Index(int page = 1) 
-            => View(await this.articles.GetAllAsync(page));
+        public async Task<IActionResult> Index(int page = 1)
+        {
+            return View(new AllArticlesViewModel
+            {
+                Articles = await this.articles.GetAllAsync(page),
+                TotalArticles = await articles.GetTotalAsync(),
+                CurrentPage = page
+            });
+        }
 
         public async Task<IActionResult> Create() => await Task.Run(() => View());
 
