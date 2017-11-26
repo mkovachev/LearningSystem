@@ -29,7 +29,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Courses\" />
-    <Folder Include="Infrastructure\Filters\" />
   </ItemGroup>
 
 </Project>

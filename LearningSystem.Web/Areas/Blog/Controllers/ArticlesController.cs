@@ -3,6 +3,7 @@ using LearningSystem.Services.Blog.Contracts;
 using LearningSystem.Services.Html.Contracts;
 using LearningSystem.Web.Areas.Blog.Models.Articles;
 using LearningSystem.Web.Infrastructure;
+using LearningSystem.Web.Infrastructure.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -32,12 +33,13 @@ namespace LearningSystem.Web.Areas.Blog.Controllers
         public async Task<IActionResult> Create() => await Task.Run(() => View());
 
         [HttpPost]
+        [ValidateModelState]
         public async Task<IActionResult> Create(CreateArticleViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(model);
+            //}
 
             model.Content = this.html.Sanitize(model.Content);
 
