@@ -1,7 +1,6 @@
 ﻿using LearningSystem.Data.Models;
 using LearningSystem.Services.Admin.Contracts;
 using LearningSystem.Web.Areas.Admin.Models.Courses;
-using LearningSystem.Web.Controllers;
 using LearningSystem.Web.Infrastructure;
 using LearningSystem.Web.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Identity;
@@ -26,7 +25,7 @@ namespace LearningSystem.Web.Areas.Admin.Controllers
         }
 
         public async Task<IActionResult> Create()
-            => View(new AddCourseViewModel
+            => View(new CreateCourseViewModel
             {
                 StartDate = DateTime.UtcNow,
                 EndDate = DateTime.UtcNow.AddMonths(1),
@@ -34,7 +33,7 @@ namespace LearningSystem.Web.Areas.Admin.Controllers
             });
 
         [HttpPost]
-        public async Task<IActionResult> Create(AddCourseViewModel model)
+        public async Task<IActionResult> Create(CreateCourseViewModel model)
         {
             if (!ModelState.IsValid)
             {

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LearningSystem.Web.Areas.Admin.Models.Courses
 {
-    public class AddCourseViewModel: IValidatableObject
+    public class CreateCourseViewModel: IValidatableObject
     {
         [Required]
         [MinLength(3)]
