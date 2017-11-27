@@ -1,15 +1,14 @@
 ﻿using LearningSystem.Data.Models;
 using LearningSystem.Services.Blog.Contracts;
-using LearningSystem.Services.Blog.Models;
 using LearningSystem.Services.Html.Contracts;
 using LearningSystem.Web.Areas.Blog.Models.Articles;
 using LearningSystem.Web.Infrastructure;
+using LearningSystem.Web.Infrastructure.Extensions;
 using LearningSystem.Web.Infrastructure.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using System;
 
 namespace LearningSystem.Web.Areas.Blog.Controllers
 {
@@ -35,19 +34,14 @@ namespace LearningSystem.Web.Areas.Blog.Controllers
             return View(new AllArticlesViewModel
             {
                 Articles = await this.articles.GetAllAsync(page),
-                TotalArticles = await articles.GetTotalAsync(),
+                TotalArticles = await this.articles.GetTotalAsync(),
                 CurrentPage = page
             });
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Details(int id) 
-            => await this.ViewOrNotFound(await this.articles.GetByIdAsync(id));
-
-        private Task<IActionResult> ViewOrNotFound(ArticleDetailsServiceModel articleDetailsServiceModel)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IActionResult> Details(int id)
+            => this.ViewOrNotFound(await this.articles.GetByIdAsync(id));
 
         public async Task<IActionResult> Create() => await Task.Run(() => View());
 

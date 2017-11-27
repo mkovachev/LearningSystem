@@ -5,3 +5,8 @@
 
 <h2>@ViewData["Title"]</h2>
 
+<h5><em>published by @Model.Author on @Model.PublishDate.ToShortDateString()</em></h5>
+
+<div>
+    @Html.Raw(@Model.Content)
+</div>

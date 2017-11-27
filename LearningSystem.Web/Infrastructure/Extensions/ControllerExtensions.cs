@@ -4,9 +4,9 @@ namespace LearningSystem.Web.Infrastructure.Extensions
 {
     public static class ControllerExtensions
     {
-        public static IActionResult ViewOrNotFound(this Controller controller ,object model)
+        public static IActionResult ViewOrNotFound(this Controller controller, object model)
         {
-            if(model == null)
+            if (model == null)
             {
                 return controller.NotFound();
             }

@@ -36,10 +36,14 @@ namespace LearningSystem.Web
                 .AddEntityFrameworkStores<LearningSystemDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddAutoMapper(); // reg autoMapper
 
             services.AddServices(); // auto add services
 
-            services.AddAutoMapper(); // reg autoMapper
+            services.AddRouting(routing =>
+            {
+                routing.LowercaseUrls = true;
+            });
 
             services.AddMvc(options =>
             {
@@ -60,7 +64,7 @@ namespace LearningSystem.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/home/error");
             }
 
             app.UseStaticFiles();
@@ -69,6 +73,12 @@ namespace LearningSystem.Web
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute( // TODO not working
+                    name: "blog",
+                    template: "blog/articles/{id}/{title}",
+                    defaults: new { area = "Blog", controller = "Articles", action = "Details" }
+                    );
+
                 routes.MapRoute(
                     name: "areas",
                     template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
