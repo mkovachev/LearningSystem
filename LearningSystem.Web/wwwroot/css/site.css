@@ -30,9 +30,10 @@
     margin-bottom: 25px;
 }
 
-    .article-list li.disabled a {
-        pointer-events: none;
-    }
+a.disabled {
+    color: gray;
+    pointer-events: none;
+}
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
