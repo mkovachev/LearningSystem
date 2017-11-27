@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using System;
 
 namespace LearningSystem.Web.Areas.Blog.Controllers
 {
@@ -37,6 +38,15 @@ namespace LearningSystem.Web.Areas.Blog.Controllers
                 TotalArticles = await articles.GetTotalAsync(),
                 CurrentPage = page
             });
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> Details(int id) 
+            => await this.ViewOrNotFound(await this.articles.GetByIdAsync(id));
+
+        private Task<IActionResult> ViewOrNotFound(ArticleDetailsServiceModel articleDetailsServiceModel)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<IActionResult> Create() => await Task.Run(() => View());

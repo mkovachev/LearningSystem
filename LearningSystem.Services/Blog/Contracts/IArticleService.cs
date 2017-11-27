@@ -10,6 +10,8 @@ namespace LearningSystem.Services.Blog.Contracts
 
         Task<IEnumerable<AllArticlesServiceModel>> GetAllAsync(int page = 1);
 
+        Task<ArticleDetailsServiceModel> GetByIdAsync(int id);
+
         Task<int> GetTotalAsync();
     }
 }

@@ -43,6 +43,13 @@ namespace LearningSystem.Services.Blog.Services
                    .ProjectTo<AllArticlesServiceModel>()
                    .ToListAsync();
 
+        public async Task<ArticleDetailsServiceModel> GetByIdAsync(int id)
+            => await this.db
+                .Articles
+                .Where(a => a.Id == id)
+                .ProjectTo<ArticleDetailsServiceModel>()
+                .FirstOrDefaultAsync();
+
         public async Task<int> GetTotalAsync()
             => await this.db.Articles.CountAsync();
     }
