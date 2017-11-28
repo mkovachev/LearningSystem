@@ -33,21 +33,13 @@ namespace LearningSystem.Services.Services
                 .ProjectTo<CourseDetailsServiceModel>()
                 .FirstOrDefaultAsync();
 
-        public async Task<bool> SignUpStudent(int courseId, string studentId)
+        public async Task<bool> SignUpStudentAsync(int courseId, string studentId)
         {
-            var course = await this.db
-                             .Courses
-                             .Where(c => c.Id == courseId)
-                              .Select(c => new
-                              {
-                                  c.StartDate,
-                                  IsSignedUp = c.Students.Any(s => s.StudentId == studentId)
-                              })
-                              .FirstOrDefaultAsync();
+            var course = await this.GetCourseInfo(courseId, studentId);
 
-            if (course == null 
-                || course.StartDate < DateTime.UtcNow 
-                || course.IsSignedUp)
+            if (course == null
+                || course.StartDate < DateTime.UtcNow
+                || course.UserIsSignedUp)
             {
                 return false;
             }
@@ -64,11 +56,50 @@ namespace LearningSystem.Services.Services
             return true;
         }
 
-        public async Task<bool> IsSignedUp(int courseId, string userId)
+        public async Task<bool> SignOutStudentAsync(int courseId, string studentId)
+        {
+
+            var course = await this.GetCourseInfo(courseId, studentId);
+
+            if (course == null
+                 || course.StartDate < DateTime.UtcNow
+                 || !course.UserIsSignedUp)
+            {
+                return false;
+            }
+
+            // make sure ids are in the same order as in db!
+            var studentInCourse = await this.db.FindAsync<StudentCourse>(courseId, studentId);
+
+            // Var 2 make join of two tables and should be slower
+            // var studentInCourse = await db.Courses
+            //    .Where(c => c.Id == courseId)
+            //    .SelectMany(c => c.Students)
+            //    .FirstOrDefaultAsync(s => s.StudentId == studentId);
+
+            this.db.Remove(studentInCourse);
+
+            await this.db.SaveChangesAsync();
+
+            return true;
+        }
+
+        private async Task<CourseWithStudentsServiceModel> GetCourseInfo(int courseId, string studentId)
+            => await this.db
+                             .Courses
+                             .Where(c => c.Id == courseId)
+                              .Select(c => new CourseWithStudentsServiceModel
+                              {
+                                  StartDate = c.StartDate,
+                                  UserIsSignedUp = c.Students.Any(s => s.StudentId == studentId)
+                              })
+                              .FirstOrDefaultAsync();
+
+        public async Task<bool> UserIsSignedUpAsync(int courseId, string studentId)
         {
             return await this.db
                 .Courses
-                .AnyAsync(c => c.Id == courseId && c.Students.Any(s => s.StudentId == userId));
+                .AnyAsync(c => c.Id == courseId && c.Students.Any(s => s.StudentId == studentId));
         }
     }
 }

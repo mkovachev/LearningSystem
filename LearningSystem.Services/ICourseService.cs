@@ -10,9 +10,11 @@ namespace LearningSystem.Services
 
         Task<CourseDetailsServiceModel> ByIdAsync(int id);
 
-        Task<bool> IsSignedUp(int courseId, string userId);
+        Task<bool> UserIsSignedUpAsync(int courseId, string studentId);
 
-        Task<bool> SignUpStudent(int courseId, string userId);
+        Task<bool> SignUpStudentAsync(int courseId, string studentId);
+
+        Task<bool> SignOutStudentAsync(int courseId, string studentId);
 
     }
 }

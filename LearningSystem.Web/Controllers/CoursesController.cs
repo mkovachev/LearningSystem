@@ -35,7 +35,7 @@ namespace LearningSystem.Web.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var userId = this.userManager.GetUserId(User);
-                model.IsSignedUp = await this.courses.IsSignedUp(id, userId);
+                model.IsSignedUp = await this.courses.UserIsSignedUpAsync(id, userId);
             }
 
             return View(model);
@@ -46,7 +46,7 @@ namespace LearningSystem.Web.Controllers
         public async Task<IActionResult> SignUp(int id)
         {
             var studentId = this.userManager.GetUserId(User);
-            var success = await courses.SignUpStudent(id, studentId);
+            var success = await courses.SignUpStudentAsync(id, studentId);
 
             if (!success)
             {
@@ -54,6 +54,22 @@ namespace LearningSystem.Web.Controllers
             }
 
             TempData.AddSuccessMessage("You have succesfully singed up for this course");
+            return RedirectToAction(nameof(Details), new { id });
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> SignOut(int id)
+        {
+            var studentId = this.userManager.GetUserId(User);
+            var success = await courses.SignOutStudentAsync(id, studentId);
+
+            if (!success)
+            {
+                return BadRequest();
+            }
+
+            TempData.AddSuccessMessage("You have succesfully singed out");
             return RedirectToAction(nameof(Details), new { id });
         }
     }
