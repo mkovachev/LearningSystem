@@ -7,7 +7,7 @@ namespace LearningSystem.Web.Models.CoursesViewModels
 
         public CourseDetailsServiceModel Course { get; set; }
 
-        public bool? UserIsSignedInCourse { get; set; } // nullable: if not logged is null
+        public bool IsSignedUp { get; set; }
 
     }
 }

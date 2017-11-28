@@ -16,10 +16,25 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    if(Model.Course.StartDate > DateTime.UtcNow)
+    if (Model.Course.StartDate >= DateTime.UtcNow)
     {
+        if (Model.IsSignedUp)
+        {
+            <form asp-action="SignOut" asp-route-id="@Model.Course.Id" method="post">
+                <input type="submit" class="btn btn-info" value="Sign Out" />
+            </form>
+        }
+        else
+        {
+            <form asp-action="SignUp" asp-route-id="@Model.Course.Id" method="post">
+                <input type="submit" class="btn btn-info" value="Sign Up" />
+            </form>
+        }
 
-
+    }
+    else
+    {
+        <span>This course has already started</span>
     }
 }
 else

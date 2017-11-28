@@ -1,5 +1,6 @@
 ﻿using AutoMapper.QueryableExtensions;
 using LearningSystem.Data;
+using LearningSystem.Data.Models;
 using LearningSystem.Services.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -32,7 +33,38 @@ namespace LearningSystem.Services.Services
                 .ProjectTo<CourseDetailsServiceModel>()
                 .FirstOrDefaultAsync();
 
-        public async Task<bool> UserIsSignedInCourse(int courseId, string userId)
+        public async Task<bool> SignUpStudent(int courseId, string studentId)
+        {
+            var course = await this.db
+                             .Courses
+                             .Where(c => c.Id == courseId)
+                              .Select(c => new
+                              {
+                                  c.StartDate,
+                                  IsSignedUp = c.Students.Any(s => s.StudentId == studentId)
+                              })
+                              .FirstOrDefaultAsync();
+
+            if (course == null 
+                || course.StartDate < DateTime.UtcNow 
+                || course.IsSignedUp)
+            {
+                return false;
+            }
+
+            var student = new StudentCourse
+            {
+                CourseId = courseId,
+                StudentId = studentId
+            };
+
+            this.db.Add(student);
+            await this.db.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> IsSignedUp(int courseId, string userId)
         {
             return await this.db
                 .Courses

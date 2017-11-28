@@ -1,6 +1,8 @@
 ﻿using LearningSystem.Data.Models;
 using LearningSystem.Services;
+using LearningSystem.Web.Infrastructure.Extensions;
 using LearningSystem.Web.Models.CoursesViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -33,10 +35,26 @@ namespace LearningSystem.Web.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var userId = this.userManager.GetUserId(User);
-                model.UserIsSignedInCourse = await this.courses.UserIsSignedInCourse(id, userId);
+                model.IsSignedUp = await this.courses.IsSignedUp(id, userId);
             }
 
             return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> SignUp(int id)
+        {
+            var studentId = this.userManager.GetUserId(User);
+            var success = await courses.SignUpStudent(id, studentId);
+
+            if (!success)
+            {
+                return BadRequest();
+            }
+
+            TempData.AddSuccessMessage("You have succesfully singed up for this course");
+            return RedirectToAction(nameof(Details), new { id });
         }
     }
 }
