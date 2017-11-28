@@ -13,3 +13,16 @@
 <h5>End date: @Model.Course.EndDate.ToShortDateString()</h5>
 
 <h5>Course Info: @Model.Course.Description</h5>
+
+@if (User.Identity.IsAuthenticated)
+{
+    if(Model.Course.StartDate > DateTime.UtcNow)
+    {
+
+
+    }
+}
+else
+{
+    <span>To sign to this course, please <a asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Context.Request.Path">login</a></span>
+}
