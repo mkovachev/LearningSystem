@@ -12,6 +12,9 @@ namespace LearningSystem.Web.Controllers
 
         public HomeController(ICourseService courses)
         {
+            // shopping cart
+            // this.HttpContext.Session;
+
             this.courses = courses;
         }
 

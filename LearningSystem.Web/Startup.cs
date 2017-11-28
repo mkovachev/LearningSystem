@@ -40,10 +40,9 @@ namespace LearningSystem.Web
 
             services.AddServices(); // auto add services
 
-            services.AddRouting(routing =>
-            {
-                routing.LowercaseUrls = true;
-            });
+            services.AddRouting(routing => { routing.LowercaseUrls = true; });
+
+            services.AddSession(); // for shopping cart
 
             services.AddMvc(options =>
             {
