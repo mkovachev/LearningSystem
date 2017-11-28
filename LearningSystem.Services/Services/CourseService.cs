@@ -18,11 +18,19 @@ namespace LearningSystem.Services.Services
             this.db = db;
         }
 
-        public async Task<IEnumerable<AllCoursesServiceModel>> Active()
+        public async Task<IEnumerable<AllCoursesServiceModel>> ActiveAsync()
             => await this.db.Courses
                 .OrderByDescending(c => c.Id)
                 .Where(c => c.StartDate >= DateTime.UtcNow)
                 .ProjectTo<AllCoursesServiceModel>()
                 .ToListAsync();
+
+        public async Task<CourseDetailsServiceModel> DetailsAsync(int id)
+            => await this.db
+                .Courses
+                .Where(c => c.Id == id)
+                .ProjectTo<CourseDetailsServiceModel>()
+                .FirstOrDefaultAsync();
+
     }
 }

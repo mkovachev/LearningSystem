@@ -6,6 +6,8 @@ namespace LearningSystem.Services
 {
     public interface ICourseService
     {
-        Task<IEnumerable<AllCoursesServiceModel>> Active();
+        Task<IEnumerable<AllCoursesServiceModel>> ActiveAsync();
+
+        Task<CourseDetailsServiceModel> DetailsAsync (int id);
     }
 }
