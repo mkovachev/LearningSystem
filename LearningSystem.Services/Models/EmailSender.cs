@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace LearningSystem.Services
+namespace LearningSystem.Services.Models
 {
     public class EmailSender : IEmailSender
     {

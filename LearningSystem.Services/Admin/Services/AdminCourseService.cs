@@ -19,7 +19,7 @@ namespace LearningSystem.Services.Admin.Services
                 Name = name,
                 Description = description,
                 StartDate = startDate,
-                EndtDate = endDate,
+                EndDate = endDate,
                 TrainerId = trainerId
             };
 

@@ -19,7 +19,7 @@ namespace LearningSystem.Data.Models
 
         public DateTime StartDate { get; set; }
 
-        public DateTime EndtDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         public string TrainerId { get; set; }
 
