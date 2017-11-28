@@ -8,6 +8,10 @@ namespace LearningSystem.Services
     {
         Task<IEnumerable<AllCoursesServiceModel>> ActiveAsync();
 
-        Task<CourseDetailsServiceModel> DetailsAsync (int id);
+        Task<CourseDetailsServiceModel> ByIdAsync (int id);
+
+        Task<bool> UserIsSignedInCourse(int courseId, string userId);
+
+
     }
 }

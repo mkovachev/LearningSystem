@@ -1,0 +1,15 @@
+﻿@model CourseDetailsViewModel
+@{
+    ViewData["Title"] = $"{Model.Course.Name}";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Trainer: @Model.Course.Trainer</h4>
+
+<h5>Students registered: @Model.Course.Students</h5>
+
+<h5>Start date:@Model.Course.StartDate.ToShortDateString()</h5>
+<h5>End date: @Model.Course.EndDate.ToShortDateString()</h5>
+
+<h5>Course Info: @Model.Course.Description</h5>

@@ -25,12 +25,18 @@ namespace LearningSystem.Services.Services
                 .ProjectTo<AllCoursesServiceModel>()
                 .ToListAsync();
 
-        public async Task<CourseDetailsServiceModel> DetailsAsync(int id)
+        public async Task<CourseDetailsServiceModel> ByIdAsync(int id)
             => await this.db
                 .Courses
                 .Where(c => c.Id == id)
                 .ProjectTo<CourseDetailsServiceModel>()
                 .FirstOrDefaultAsync();
 
+        public async Task<bool> UserIsSignedInCourse(int courseId, string userId)
+        {
+            return await this.db
+                .Courses
+                .AnyAsync(c => c.Id == courseId && c.Students.Any(s => s.StudentId == userId));
+        }
     }
 }
