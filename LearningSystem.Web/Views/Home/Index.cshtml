@@ -17,15 +17,16 @@
     @foreach (var course in Model)
     {
         <div class="col-md-4">
-
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="panel-title">
-                        @course.Name
-                    </div>
+                    <h3 class="panel-title text-center">@course.Name</h3>
+                </div>
+                <div class="panel-body">
+                    <img src="https://picsum.photos/300/?random&giud=@(Guid.NewGuid())" class="img-responsive">
+                    <br />
+                    @course.StartDate.ToShortDateString() - @course.EndDate.ToShortDateString()
                 </div>
             </div>
-            <div class="panel-body">@course.StartDate.ToShortDateString() - @course.</div>
         </div>
     }
 </div>
