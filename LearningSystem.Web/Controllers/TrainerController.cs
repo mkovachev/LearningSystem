@@ -1,4 +1,5 @@
-﻿using LearningSystem.Data.Models;
+﻿using LearningSystem.Data;
+using LearningSystem.Data.Models;
 using LearningSystem.Services;
 using LearningSystem.Web.Infrastructure;
 using LearningSystem.Web.Models.StudentsViewModels;
@@ -45,6 +46,31 @@ namespace LearningSystem.Web.Controllers
                 Students = await this.trainers.GetStudentsInCourseAsync(id),
                 Course = await this.courses.ByIdAsync(id)
             });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditGrade(int id, string studentId, Grade grade)
+        {
+            if (studentId == null)
+            {
+                return BadRequest();
+            }
+
+            var userId = this.userManager.GetUserId(User);
+
+            if (!await this.trainers.IsTrainer(id, userId))
+            {
+                return BadRequest();
+            }
+
+            var success = await this.trainers.EditGrade(id, studentId, grade);
+
+            if (!success)
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction(nameof(Students), new { id });
         }
     }
 }

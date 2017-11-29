@@ -1,4 +1,5 @@
-﻿using LearningSystem.Services.Models;
+﻿using LearningSystem.Data;
+using LearningSystem.Services.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,6 +12,8 @@ namespace LearningSystem.Services
         Task<IEnumerable<StudentInCourseServiceModel>> GetStudentsInCourseAsync(int courseId);
 
         Task<bool> IsTrainer(int courseId, string trainerId);
+
+        Task<bool> EditGrade(int courseId, string studentId, Grade grade);
 
     }
 }
