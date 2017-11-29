@@ -1,9 +1,16 @@
 ﻿@model UserProfileServiceModel
 @{
-    ViewData["Title"] = $"{Model.Email} profile";
+    ViewData["Title"] = "My Profile";
 }
 
 <h2>@ViewData["Title"]</h2>
+
+@if (Model.Email == User.Identity.Name)
+{
+    <a asp-controller="Manage" asp-action="Index" class="btn btn-info btn-sm">Edit Profile</a>
+    <br />
+    <br />
+}
 
 <table class="table table-bordered table-hover">
     <thead>
