@@ -101,5 +101,13 @@ namespace LearningSystem.Services.Services
                 .Courses
                 .AnyAsync(c => c.Id == courseId && c.Students.Any(s => s.StudentId == studentId));
         }
+
+        public async Task<IEnumerable<AllCoursesServiceModel>> FindAsync(string search)
+            => await this.db
+                .Courses
+                .OrderByDescending(c => c.StartDate)
+                .Where(c => c.Name.ToLower().Contains(search.ToLower()))
+                .ProjectTo<AllCoursesServiceModel>()
+                .ToListAsync();
     }
 }
