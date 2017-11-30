@@ -45,12 +45,21 @@ namespace LearningSystem.Web.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> SubmitExam(IFormFile exam)
+        public async Task<IActionResult> SubmitExam(int id, IFormFile exam)
         {
             if (!exam.FileName.EndsWith(".zip") || exam.Length > DataConstants.ExamSubmissionFileLength)
             {
+                // ModelState.AddModelError(string.Empty, "Please upload .zip max 2MB");
+                TempData.AddErrorMessage("Please upload .zip max 2MB");
+                return RedirectToAction(nameof(Details), new { id });
+            }
+
+            // convert to byte[]
+            using (var memoryStream = new MemoryStream())
+            {
 
             }
+
             return View();
         }
 
