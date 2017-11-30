@@ -19,7 +19,7 @@
     if(Model.IsSignedUp && Model.Course.EndDate.Date != DateTime.UtcNow.AddDays(1).Date) //TODO
     {
         <form asp-action="SubmitExam" asp-route-id="@Model.Course.Id" method="post">
-            <input type="file" name="exam" formenctype="multipart/form-data"/>
+            <input type="file" name="exam" accept=".zip" formenctype="multipart/form-data"/>
         </form>
         <br />
     }
