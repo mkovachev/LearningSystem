@@ -1,4 +1,5 @@
-﻿using LearningSystem.Data.Models;
+﻿using LearningSystem.Data;
+using LearningSystem.Data.Models;
 using LearningSystem.Services;
 using LearningSystem.Web.Infrastructure.Extensions;
 using LearningSystem.Web.Models.CoursesViewModels;
@@ -46,6 +47,10 @@ namespace LearningSystem.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> SubmitExam(IFormFile exam)
         {
+            if (!exam.FileName.EndsWith(".zip") || exam.Length > DataConstants.ExamSubmissionFileLength)
+            {
+
+            }
             return View();
         }
 

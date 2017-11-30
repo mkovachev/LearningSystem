@@ -14,7 +14,7 @@ namespace LearningSystem.Data.Models
 
         public Grade? Grade { get; set; }
 
-        [MaxLength(2 * 1024)]
+        [MaxLength(DataConstants.ExamSubmissionFileLength)]
         public byte[] ExamSubmission { get; set; }
     }
 
