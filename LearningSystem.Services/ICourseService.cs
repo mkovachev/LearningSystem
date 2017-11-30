@@ -18,5 +18,6 @@ namespace LearningSystem.Services
 
         Task<IEnumerable<AllCoursesServiceModel>> FindAsync(string search);
 
+        Task<bool> SaveExamSubmission(int courseId, string studentId, byte[] examSubmission);
     }
 }

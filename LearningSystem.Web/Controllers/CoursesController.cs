@@ -50,17 +50,22 @@ namespace LearningSystem.Web.Controllers
             if (!exam.FileName.EndsWith(".zip") || exam.Length > DataConstants.ExamSubmissionFileLength)
             {
                 // ModelState.AddModelError(string.Empty, "Please upload .zip max 2MB");
-                TempData.AddErrorMessage("Please upload .zip max 2MB");
+                TempData.AddErrorMessage("Please upload .zip up to 2MB");
                 return RedirectToAction(nameof(Details), new { id });
             }
 
             // convert to byte[]
-            using (var memoryStream = new MemoryStream())
-            {
+            var file = await exam.ToByteArrayAsync();
+            var studentId = this.userManager.GetUserId(User);
+            var success = await this.courses.SaveExamSubmission(id, studentId, file);
 
+            if (!success)
+            {
+                return BadRequest();
             }
 
-            return View();
+            TempData.AddSuccessMessage("File successfully uploaded");
+            return RedirectToAction(nameof(Details), new { id });
         }
 
 

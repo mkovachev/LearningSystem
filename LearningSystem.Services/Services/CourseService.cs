@@ -113,5 +113,22 @@ namespace LearningSystem.Services.Services
                            .ProjectTo<AllCoursesServiceModel>()
                            .ToListAsync();
         }
+
+        public async Task<bool> SaveExamSubmission(int courseId, string studentId, byte[] examSubmission)
+        {
+            var studentInCourse = await this.db
+                .FindAsync<StudentCourse>(courseId, studentId);
+
+            if (studentInCourse == null)
+            {
+                return false;
+            }
+
+            studentInCourse.ExamSubmission = examSubmission;
+
+            await this.db.SaveChangesAsync();
+
+            return true;
+        }
     }
 }
