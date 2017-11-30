@@ -20,6 +20,7 @@
     {
         <form asp-action="SubmitExam" asp-route-id="@Model.Course.Id" method="post">
             <input type="file" name="exam" accept=".zip" formenctype="multipart/form-data"/>
+            <input type="submit" class="btn btn-info btn-sm" value="Upload File"/>
         </form>
         <br />
     }
@@ -29,13 +30,13 @@
         if (Model.IsSignedUp)
         {
             <form asp-action="SignOut" asp-route-id="@Model.Course.Id" method="post">
-                <input type="submit" class="btn btn-info" value="Sign Out" />
+                <input type="submit" class="btn btn-info btn-sm" value="Sign Out" />
             </form>
         }
         else
         {
             <form asp-action="SignUp" asp-route-id="@Model.Course.Id" method="post">
-                <input type="submit" class="btn btn-info" value="Sign Up" />
+                <input type="submit" class="btn btn-info btn-sm" value="Sign Up" />
             </form>
         }
 
