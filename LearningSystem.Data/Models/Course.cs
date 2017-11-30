@@ -26,5 +26,6 @@ namespace LearningSystem.Data.Models
         public User Trainer { get; set; }
 
         public List<StudentCourse> Students { get; set; } = new List<StudentCourse>();
+
     }
 }

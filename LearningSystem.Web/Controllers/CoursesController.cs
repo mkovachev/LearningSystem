@@ -3,6 +3,7 @@ using LearningSystem.Services;
 using LearningSystem.Web.Infrastructure.Extensions;
 using LearningSystem.Web.Models.CoursesViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -40,6 +41,14 @@ namespace LearningSystem.Web.Controllers
 
             return View(model);
         }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> SubmitExam(IFormFile exam)
+        {
+            return View();
+        }
+
 
         [Authorize]
         [HttpPost]

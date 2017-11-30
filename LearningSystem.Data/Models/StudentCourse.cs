@@ -1,4 +1,6 @@
-﻿namespace LearningSystem.Data.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LearningSystem.Data.Models
 {
     public class StudentCourse
     {
@@ -11,6 +13,9 @@
         public Course Course { get; set; }
 
         public Grade? Grade { get; set; }
+
+        [MaxLength(2 * 1024)]
+        public byte[] ExamSubmission { get; set; }
     }
 
 }

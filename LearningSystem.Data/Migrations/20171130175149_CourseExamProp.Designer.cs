@@ -11,9 +11,10 @@ using System;
 namespace LearningSystem.Data.Migrations
 {
     [DbContext(typeof(LearningSystemDbContext))]
-    partial class LearningSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171130175149_CourseExamProp")]
+    partial class CourseExamProp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
