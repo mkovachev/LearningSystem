@@ -16,6 +16,15 @@
 
 @if (User.Identity.IsAuthenticated)
 {
+    if(Model.IsSignedUp && Model.Course.EndDate.Date != DateTime.UtcNow.AddDays(1).Date) //TODO
+    {
+        <form asp-action="SubmitExam" asp-route-id="@Model.Course.Id" method="post">
+            <input type="file" name="exam" formenctype="multipart/form-data"/>
+        </form>
+        <br />
+    }
+
+
     if (Model.Course.StartDate >= DateTime.UtcNow)
     {
         if (Model.IsSignedUp)
