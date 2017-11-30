@@ -86,14 +86,14 @@ namespace LearningSystem.Services.Services
 
         private async Task<CourseWithStudentsServiceModel> GetCourseInfo(int courseId, string studentId)
             => await this.db
-                             .Courses
-                             .Where(c => c.Id == courseId)
-                              .Select(c => new CourseWithStudentsServiceModel
-                              {
-                                  StartDate = c.StartDate,
-                                  UserIsSignedUp = c.Students.Any(s => s.StudentId == studentId)
-                              })
-                              .FirstOrDefaultAsync();
+                       .Courses
+                       .Where(c => c.Id == courseId)
+                        .Select(c => new CourseWithStudentsServiceModel
+                        {
+                            StartDate = c.StartDate,
+                            UserIsSignedUp = c.Students.Any(s => s.StudentId == studentId)
+                        })
+                        .FirstOrDefaultAsync();
 
         public async Task<bool> UserIsSignedUpAsync(int courseId, string studentId)
         {
@@ -103,11 +103,15 @@ namespace LearningSystem.Services.Services
         }
 
         public async Task<IEnumerable<AllCoursesServiceModel>> FindAsync(string search)
-            => await this.db
-                .Courses
-                .OrderByDescending(c => c.StartDate)
-                .Where(c => c.Name.ToLower().Contains(search.ToLower()))
-                .ProjectTo<AllCoursesServiceModel>()
-                .ToListAsync();
+        {
+            search = search ?? string.Empty;
+
+            return await this.db
+                           .Courses
+                           .OrderByDescending(c => c.StartDate)
+                           .Where(c => c.Name.ToLower().Contains(search.ToLower()))
+                           .ProjectTo<AllCoursesServiceModel>()
+                           .ToListAsync();
+        }
     }
 }
