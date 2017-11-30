@@ -10,5 +10,7 @@
         public const string TempDataErrorMessageKey = "ErrorMessage";
         public const string TempDataWarningMessageKey = "WarningMessage";
 
+        public const int ExamSubmissionFileLenght = 2 * 1024;
+
     }
 }
