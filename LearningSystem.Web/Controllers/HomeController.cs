@@ -12,20 +12,17 @@ namespace LearningSystem.Web.Controllers
 
         public HomeController(ICourseService courses)
         {
-            // shopping cart
-            // this.HttpContext.Session;
-
             this.courses = courses;
+            // this.HttpContext.Session; // shopping cart
         }
 
         public async Task<IActionResult> Index()
-        {
-            return View(await this.courses.ActiveAsync());
-        }
+            => View(new HomeIndexViewModel
+            {
+                Courses = await this.courses.ActiveAsync()
+            });
 
         public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+            => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

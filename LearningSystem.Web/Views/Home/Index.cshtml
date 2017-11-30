@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AllCoursesServiceModel>
+﻿@model HomeIndexViewModel
 @{
     ViewData["Title"] = "Active Courses";
 }
@@ -8,8 +8,20 @@
     <h3 class="text-center">Welcome to our learning system</h3>
 </div>
 
+<br />
+
 <div class="row">
-    @foreach (var course in Model)
+    <form>
+        <div class="col-md-4">
+            <input asp-for="Search" class="form-control" placeholder="Search..." />
+        </div>
+    </form>
+</div>
+
+<br />
+
+<div class="row">
+    @foreach (var course in Model.Courses)
     {
         <div class="col-md-4">
             <div class="panel panel-default">

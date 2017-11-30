@@ -32,7 +32,7 @@ namespace LearningSystem.Web.Areas.Admin.Models.Courses
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if(this.StartDate >= DateTime.UtcNow)
+            if(this.StartDate < DateTime.UtcNow)
             {
                 yield return new ValidationResult("Start date cannot be backdated");
             }
