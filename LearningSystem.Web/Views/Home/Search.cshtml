@@ -1,6 +1,6 @@
 ﻿@model SearchViewModel
 @{
-    ViewData["Title"] = $"Result found for {Model.Search}";
+    ViewData["Title"] = $"Search Result for: {Model.Search}";
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -17,7 +17,7 @@
 
 @if (Model.Courses.Any())
 {
-    <div class="row">
+    <div class="row home-page">
         @await Html.PartialAsync("_CoursesPartial", Model.Courses);
     </div>
 }
