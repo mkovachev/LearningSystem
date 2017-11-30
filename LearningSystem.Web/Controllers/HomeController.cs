@@ -24,7 +24,7 @@ namespace LearningSystem.Web.Controllers
                 Courses = await this.courses.ActiveAsync()
             });
 
-        public async Task<IActionResult> Search(SearchViewModel model)
+        public async Task<IActionResult> Search(HomeIndexViewModel model)
             => View(new SearchViewModel
             {
                 Search = model.Search,
