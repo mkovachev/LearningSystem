@@ -29,7 +29,7 @@
                 <td>
                     @if (course.Grade == Grade.A
                      || course.Grade == Grade.B
-                     || course.Grade == Grade.C)
+                     || course.Grade == Grade.None)
                     {
                         <a asp-action="DownloadCertificate" asp-route-id="@course.Id">Download</a>
                     }
