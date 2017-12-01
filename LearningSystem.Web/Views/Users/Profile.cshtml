@@ -24,12 +24,13 @@
         @foreach (var course in Model.Courses)
             {
             <tr>
+                <!--TODO Grade always null-->
                 <td><a asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id">@course.Name</a></td>
                 <td>@(course.Grade == null ? "No Grade" : course.Grade.ToString())</td>
                 <td>
                     @if (course.Grade == Grade.A
                      || course.Grade == Grade.B
-                     || course.Grade == Grade.None)
+                     || course.Grade == Grade.C)
                     {
                         <a asp-action="DownloadCertificate" asp-route-id="@course.Id">Download</a>
                     }
