@@ -53,7 +53,7 @@ namespace LearningSystem.Services.Services
             return true;
         }
 
-        public async Task<byte[]> GetExamSubmission(int courseId, string studentId)
+        public async Task<byte[]> GetExamSubmissionAsync(int courseId, string studentId)
             => (await this.db
                 .FindAsync<StudentCourse>(courseId, studentId))
                 ?.ExamSubmission;

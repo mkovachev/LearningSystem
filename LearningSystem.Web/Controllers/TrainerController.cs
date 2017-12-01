@@ -87,7 +87,7 @@ namespace LearningSystem.Web.Controllers
                 return BadRequest();
             }
 
-            var exam = await this.trainers.GetExamSubmission(id, studentId);
+            var exam = await this.trainers.GetExamSubmissionAsync(id, studentId);
 
             if (exam == null)
             {
