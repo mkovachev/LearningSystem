@@ -35,11 +35,11 @@ namespace LearningSystem.Services.Services
                     CourseStartDate = c.StartDate,
                     CourseEndtDate = c.EndDate,
                     StudentName = c.Students
-                    .Where(s => s.StudentId == studentId)
-                    .Select(s => s.Student.Name),
+                                    .Where(s => s.StudentId == studentId)
+                                    .Select(s => s.Student.Name),
                     StudentGrade = c.Students
-                    .Where(s => s.StudentId == studentId)
-                    .Select(s => s.Grade),
+                                    .Where(s => s.StudentId == studentId)
+                                    .Select(s => s.Grade),
                     Trainer = c.Trainer.Name
                 })
                 .FirstOrDefaultAsync();
