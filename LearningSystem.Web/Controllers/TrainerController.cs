@@ -72,5 +72,29 @@ namespace LearningSystem.Web.Controllers
 
             return RedirectToAction(nameof(Students), new { id });
         }
+
+        public async Task<IActionResult> DownloadExam(int id, string studentId)
+        {
+            if (string.IsNullOrEmpty(studentId))
+            {
+                return BadRequest();
+            }
+
+            var userId = this.userManager.GetUserId(User);
+
+            if (!await this.trainers.IsTrainer(id, userId))
+            {
+                return BadRequest();
+            }
+
+            var exam = await this.trainers.GetExamSubmission(id, studentId);
+
+            if (exam == null)
+            {
+                return BadRequest();
+            }
+
+            return File(exam, "application/zip");
+        }
     }
 }

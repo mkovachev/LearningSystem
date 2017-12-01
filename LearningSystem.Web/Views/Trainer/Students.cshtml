@@ -11,6 +11,11 @@
             <th>E-mail</th>
             <th>Grade</th>
             <th>Edit Grade</th>
+            @if(Model.Course.EndDate < DateTime.UtcNow)
+            {
+                <th>Exam</th>
+
+            }
         </tr>
     </thead>
     <tbody>
@@ -19,8 +24,9 @@
             <tr>
                 <td>@student.Email</td>
                 <td>@(student.Grade == null ? "No Grade" : student.Grade.ToString())</td>
-                @if(Model.Course.EndDate < DateTime.UtcNow)
-                {
+
+                @if (Model.Course.EndDate < DateTime.UtcNow)
+                {               
                     <td>
                         <form asp-action="EditGrade" asp-route-id="@Model.Course.Id" method="post">
                             <input type="hidden" name="studentId" value="@student.Id"/>
@@ -28,7 +34,9 @@
                             <input type="submit" class="btn btn-info btn-sm" value="Edit Grade"/>
                         </form>
                     </td>
-
+                    <td>
+                        <a asp-action="DownloadExam" asp-route-id="@Model.Course.Id" asp-route-studentid="@student.Id">Download Exam</a>
+                    </td>
                 }
             </tr>
         }

@@ -15,5 +15,6 @@ namespace LearningSystem.Services
 
         Task<bool> EditGrade(int courseId, string studentId, Grade grade);
 
+        Task<byte[]> GetExamSubmission(int id, string studentId);
     }
 }

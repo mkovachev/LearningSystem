@@ -52,5 +52,10 @@ namespace LearningSystem.Services.Services
             await this.db.SaveChangesAsync();
             return true;
         }
+
+        public async Task<byte[]> GetExamSubmission(int courseId, string studentId)
+            => (await this.db
+                .FindAsync<StudentCourse>(courseId, studentId))
+                ?.ExamSubmission;
     }
 }
