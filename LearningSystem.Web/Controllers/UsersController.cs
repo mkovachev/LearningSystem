@@ -15,7 +15,7 @@ namespace LearningSystem.Web.Controllers
 
         public async Task<IActionResult> Profile(string id)
         {
-            var profile = await this.users.ProfileAsync(id);
+            var profile = await this.users.ProfileAsync(id); // id = email
 
             if (profile == null)
             {
@@ -23,6 +23,11 @@ namespace LearningSystem.Web.Controllers
             }
 
             return View(profile);
+        }
+
+        public async Task<IActionResult> DownloadCertificate(string id)
+        {
+
         }
     }
 }
